@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arturo Calvo | iOS Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          colors: {
+            primary: '#1e40af',
+            secondary: '#64748b',
+            light: '#f8fafc',
+            dark: '#0f172a'
+          }
+        }
+      }
+    };
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    }
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-white dark:bg-dark text-gray-800 dark:text-gray-200 font-sans">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), index * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
+
+  <!-- Navigation Bar -->
+  <header class="w-full px-6 py-4 flex justify-between items-center bg-white dark:bg-gray-800 shadow-md fixed top-0 left-0 z-50">
+    <h1 class="text-lg font-bold text-primary dark:text-white">Arturo Calvo</h1>
+    <nav class="space-x-4 text-sm text-gray-700 dark:text-gray-300">
+      <a href="#about" class="hover:text-primary transition">About</a>
+      <a href="#skills" class="hover:text-primary transition">Skills</a>
+      <a href="#projects" class="hover:text-primary transition">Projects</a>
+      <a href="#resume" class="hover:text-primary transition">Resume</a>
+      <a href="#contact" class="hover:text-primary transition">Contact</a>
+      <button onclick="toggleDarkMode()" class="ml-2 bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded transition">🌓</button>
+    </nav>
+  </header>
+
+  <main class="pt-24">
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 fade-in">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4 text-gray-900 dark:text-white transition">Arturo Calvo</h1>
+      <p class="text-lg sm:text-xl md:text-2xl text-secondary dark:text-gray-400 transition">iOS Developer with 6+ Years of Experience</p>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="py-20 px-4 sm:px-6 max-w-3xl mx-auto border-t border-gray-200 dark:border-gray-700 fade-in">
+      <h2 class="text-3xl font-semibold mb-4 transition">About Me</h2>
+      <div class="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
+        <p>I'm a passionate iOS developer with over 6 years of experience building performant, user-friendly mobile applications using Swift, SwiftUI, and Objective-C. I enjoy writing clean, maintainable code and collaborating with cross-functional teams to deliver great products.</p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 px-4 sm:px-6 bg-light dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 fade-in">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-semibold mb-6">Skills</h2>
+        <ul class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-base sm:text-lg text-gray-700 dark:text-gray-300">
+          <li>Swift</li>
+          <li>SwiftUI</li>
+          <li>Objective-C</li>
+          <li>UIKit</li>
+          <li>Combine</li>
+          <li>CoreData</li>
+          <li>Git</li>
+          <li>Xcode</li>
+          <li>REST APIs</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 px-4 sm:px-6 max-w-5xl mx-auto border-t border-gray-200 dark:border-gray-700 fade-in">
+      <h2 class="text-3xl font-semibold mb-6">Projects</h2>
+      <div class="space-y-10">
+        <div class="border-b border-gray-200 dark:border-gray-600 pb-6 transition">
+          <h3 class="text-2xl font-bold">Comandero iOS</h3>
+          <p class="text-gray-600 dark:text-gray-400 mt-2">An order-taking app for restaurants that syncs with a POS system. Built using Swift and Ruby. <a href="https://github.com/Shijo64/ComanderoIos" class="text-primary underline" target="_blank">View on GitHub</a>.</p>
+        </div>
+        <div class="border-b border-gray-200 dark:border-gray-600 pb-6 transition">
+          <h3 class="text-2xl font-bold">Civix</h3>
+          <p class="text-gray-600 dark:text-gray-400 mt-2">Mobile app for civic engagement developed using Swift, Java, and Objective-C. Features REST API integration, AutoLayout, and more.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume -->
+    <section id="resume" class="py-20 px-4 sm:px-6 bg-light dark:bg-gray-800 text-center border-t border-gray-200 dark:border-gray-700 fade-in">
+      <h2 class="text-3xl font-semibold mb-4">Resume</h2>
+      <a href="Arturo's Resume-English.pdf" download class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition text-base sm:text-lg">Download Resume</a>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 px-4 sm:px-6 max-w-3xl mx-auto text-center border-t border-gray-200 dark:border-gray-700 fade-in">
+      <h2 class="text-3xl font-semibold mb-4">Contact</h2>
+      <p class="text-base sm:text-lg text-secondary dark:text-gray-300">Feel free to reach out for collaboration or opportunities:</p>
+      <p class="text-primary dark:text-blue-400 mt-2 font-medium text-base sm:text-lg">arturocalvo89@gmail.com</p>
+      <div class="mt-4 space-x-4 sm:space-x-6">
+        <a href="https://www.linkedin.com/in/arturo-calvo/" target="_blank" class="text-primary underline hover:text-blue-700 dark:hover:text-blue-400 text-base sm:text-lg">LinkedIn</a>
+        <a href="https://github.com/Shijo64" target="_blank" class="text-primary underline hover:text-blue-700 dark:hover:text-blue-400 text-base sm:text-lg">GitHub</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
